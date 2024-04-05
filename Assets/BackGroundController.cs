@@ -21,6 +21,7 @@ public class BackGroundController : MonoBehaviour
         if(transform.position.y < -4.9f)
         {
             transform.position = new Vector3(0, 4.9f, 0);
+            // スタートボタン
         }
     }
 }
