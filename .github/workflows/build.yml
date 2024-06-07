@@ -1,61 +1,50 @@
-# 名前を付ける。これがGithubActions上に表示される
-name: Run the Windows build
+name: Run EditMode and PlayMode Test
 on:
   workflow_dispatch: {}
 jobs:
-  build:
-    name: Run the Windows build
+  test:
+    name: Run EditMode and PlayMode Test
     runs-on: ubuntu-latest
     steps:
-      # リポジトリのチェックアウト
+      # actions/checkout@v2 を利用して作業ディレクトリに
+      # Unity プロジェクトの中身をダウンロードしてくる
       - name: Check out my unity project.
-        uses: actions/checkout@v4
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+        uses: actions/checkout@v2
 
-      # LFSファイルのキャッシュを取得する
-      - name: Restore LFS cache
-        uses: actions/cache@v3
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
-
-      # LFSファイルをPullする
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add .
-          git reset --hard
-
-      # ファイル名にgitのハッシュを含めたいので$GITHUB_OUTPUTに保存しておく
-      - name: Set outputs
-        id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-        
-      # Cache
-      - uses: actions/cache@v3
-        with:
-          path: Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-
-      # Unityプロジェクトのビルド
-      # 設定しない場合、buildフォルダに出力される
-      - name: Run the Windows build
-        uses: game-ci/unity-builder@v4
+      # GameCI の Test runner を利用して
+      # EditMode 及び PlayMode のテストを実行する
+      - name: Run EditMode and PlayMode Test
+        uses: game-ci/unity-test-runner@v2
         env:
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          # 2. の手順で Secrets に登録した Unity ライセンスの情報を指定する
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        with:
-          targetPlatform: StandaloneWindows64
-          unityVersion: 2022.3.0f1  #ここに使うUnityのバージョンを入れる
 
-      # 成果物をZIPにしてアップロードする
-      - name: Upload the Windows Build
-        uses: actions/upload-artifact@v3
+          # もし Professional license を使いたい場合は、
+          # メールアドレス、パスワード、シリアルナンバーを入力する必要がある
+          # ref: https://game.ci/docs/github/test-runner#professional-license
+          # UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          # UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          # UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
-          name: Build-${{ steps.vars.outputs.sha_short }}
-          path: build
+          projectPath: .
+          # テストの実行結果もみたい場合は githubToken を指定する
+          # secrets.GITHUB_TOKEN は Secrets 未登録でも利用可能
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+          # Unity プロジェクトのバージョンを指定する
+          # ProjectSettings/ProjectVersion.txt に記載されているバージョンを入力すれば OK
+          unityVersion: 2020.3.5f1
+
+          # 実行したいテストの種類を指定できる
+          # 指定可能な値は All, PlayMode, EditMode
+          # testMode: All
+
+          # テスト実行時に利用したい Docker イメージを明示的に指定できる
+          # customImage: 'unityci/editor:2020.1.14f1-base-0'
+
+      # テストの実行結果をアーティファクトにアップロードしてダウンロードして参照できるようにする
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Test results
+          path: artifacts
