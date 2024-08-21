@@ -1,6 +1,7 @@
 name: Run EditMode and PlayMode Test
 on:
-  workflow_dispatch: {}
+  push:
+    branches: main
 jobs:
   test:
     name: Run EditMode and PlayMode Test
@@ -9,7 +10,7 @@ jobs:
       # actions/checkout@v2 を利用して作業ディレクトリに
       # Unity プロジェクトの中身をダウンロードしてくる
       - name: Check out my unity project.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # GameCI の Test runner を利用して
       # EditMode 及び PlayMode のテストを実行する
@@ -33,7 +34,7 @@ jobs:
 
           # Unity プロジェクトのバージョンを指定する
           # ProjectSettings/ProjectVersion.txt に記載されているバージョンを入力すれば OK
-          unityVersion: 2020.3.5f1
+          unityVersion: 2023.2.5f1
 
           # 実行したいテストの種類を指定できる
           # 指定可能な値は All, PlayMode, EditMode
