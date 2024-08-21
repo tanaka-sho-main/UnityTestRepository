@@ -19,6 +19,8 @@ jobs:
         env:
           # 2. の手順で Secrets に登録した Unity ライセンスの情報を指定する
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
 
           # もし Professional license を使いたい場合は、
           # メールアドレス、パスワード、シリアルナンバーを入力する必要がある
