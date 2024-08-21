@@ -14,7 +14,7 @@ jobs:
 
       # GameCI の Test runner を利用して
       # EditMode 及び PlayMode のテストを実行する
-      - name: Run EditMode and PlayMode Testa
+      - name: Run EditMode and PlayMode Test
         uses: game-ci/unity-test-runner@v4
         env:
           # 2. の手順で Secrets に登録した Unity ライセンスの情報を指定する
