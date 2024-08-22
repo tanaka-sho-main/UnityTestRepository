@@ -28,7 +28,7 @@ jobs:
           # ref: https://docs.unity3d.com/ScriptReference/BuildTarget.html
           targetPlatform: ${{ matrix.build_target }}
 
-          unityVersion: 2020.3.5f1
+          unityVersion: 2023.2.5f1
 
       # Builder で出力した WebGL ビルドをアーティファクトでダウンロード可能にする
       - name: Upload Pre-Build
