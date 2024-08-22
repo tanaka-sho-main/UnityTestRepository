@@ -2,7 +2,8 @@ name: EditMode and PlayMode Test
 
 on:
   push:
-    branches: main
+#    branches: main
+    branches: develop
 
 jobs:
   test:
