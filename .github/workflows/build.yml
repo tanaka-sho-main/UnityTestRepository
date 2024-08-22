@@ -1,4 +1,4 @@
-name: EditMode and PlayMode Test
+name: EditMode and PlayMode Test a
 on:
   push:
     branches: main
