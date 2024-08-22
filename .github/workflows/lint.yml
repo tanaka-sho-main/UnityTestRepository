@@ -15,9 +15,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Super-linter
+      - name: Super linter
         uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_INCLUDE: .*Assets/.*.cs
-          FILTER_REGEX_EXCLUDE: .*Assets/TextMesh Pro/.*
+          IGNORE_GITIGNORED_FILES: true
+          FILTER_REGEX_INCLUDE: '.*Assets/.*.cs'
+          FILTER_REGEX_EXCLUDE: '.*Assets/TextMesh Pro/.*'
