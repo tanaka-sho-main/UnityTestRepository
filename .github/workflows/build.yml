@@ -11,7 +11,8 @@ jobs:
       matrix:
         build_target:
           - StandaloneWindows64
-          - WebGL
+          - Android
+          #- WebGL
     steps:
       - name: Check out unity project
         uses: actions/checkout@v4
