@@ -9,10 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        build_target:
+        target-platform:
           - StandaloneWindows64
           - Android
-          #- WebGL
+          - WebGL
+        unity-version:
+          - 2023.2.5f1
+
     steps:
       - name: Check out unity project
         uses: actions/checkout@v4
@@ -24,15 +27,11 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          # 今回は WebGL ビルドを行いたいため WebGL を指定する
-          # WebGL 以外の指定可能な値は下記に記載の値が利用可能
-          # ref: https://docs.unity3d.com/ScriptReference/BuildTarget.html
-          targetPlatform: ${{ matrix.build_target }}
+          targetPlatform: ${{ matrix.target-platform }}
+          unityVersion: ${{ matrix.unity-version }}
 
-          unityVersion: 2023.2.5f1
-
-      - name: Upload Pre-Build
+      - name: Upload the Build for ${{ matrix.target-platform }}
         uses: actions/upload-artifact@v4
         with:
-          name: Build
+          name: Build-${{ matrix.target-platform }}
           path: build
