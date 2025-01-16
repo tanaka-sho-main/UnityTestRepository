@@ -2,12 +2,12 @@ name: EditMode and PlayMode Test
 
 on:
   push:
-#    branches: main
-    branches: develop
+    branches: main
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Check out unity project
         uses: actions/checkout@v4
@@ -23,9 +23,6 @@ jobs:
           # テストの実行結果もみたい場合は githubToken を指定する
           # secrets.GITHUB_TOKEN は Secrets 未登録でも利用可能
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-          # Unity プロジェクトのバージョンを指定する
-          # ProjectSettings/ProjectVersion.txt に記載されているバージョンを入力すれば OK
           unityVersion: 2023.2.5f1
           testMode: All
 
