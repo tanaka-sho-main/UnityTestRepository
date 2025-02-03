@@ -21,4 +21,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IGNORE_GITIGNORED_FILES: true
           FILTER_REGEX_INCLUDE: '.*Assets/.*.cs'
-          FILTER_REGEX_EXCLUDE: '.*Assets/TextMesh Pro/.*'
+          FILTER_REGEX_EXCLUDE: '.*Assets/TextMesh Pro/*'
