@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class BackGroundController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		DontDestroyOnLoad(gameObject);
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	// Update is called once per frame
+	void Update()
+	{
+	}
 
-    private void FixedUpdate()
-    {
-        transform.Translate(0, -0.03f, 0);
-        if(transform.position.y < -4.9f)
-        {
-            transform.position = new Vector3(0, 4.9f, 0);
-            // ƒXƒ^[ƒgƒ{ƒ^ƒ“
-        }
-    }
+	private void FixedUpdate()
+	{
+		transform.Translate(0, -0.03f, 0);
+		if(transform.position.y < -4.9f)
+		{
+			transform.position = new Vector3(0, 4.9f, 0);
+			// Æ’XÆ’^Â[Æ’gÆ’{Æ’^Æ’â€œ
+		}
+	}
 }
