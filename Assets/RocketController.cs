@@ -15,21 +15,21 @@ public class RocketController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // �L�[�{�[�h�̏��
+        // キーボードの情報
         var current = Keyboard.current;
-        // �L�[�{�[�h�ڑ��`�F�b�N
+        // キーボード接続チェック
         if (current == null)
         {
             return;
         }
 
-        if(current.leftArrowKey.isPressed && transform.position.x > -2)
+        if (current.leftArrowKey.isPressed && transform.position.x > -2)
         {
             transform.Translate(-0.01f, 0, 0);
         }
-        if(current.rightArrowKey.isPressed && transform.position.x < 2)
+        if (current.rightArrowKey.isPressed && transform.position.x < 2)
         {
-            transform.Translate(0.01f,0,0);
+            transform.Translate(0.01f, 0, 0);
         }
         if (current.spaceKey.wasPressedThisFrame)
         {
