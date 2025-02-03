@@ -15,7 +15,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 全ての履歴を取得
-          
+
+      - name: Override `.editorconfig` for Super Linter
+        run: sed -i 's/end_of_line = crlf/end_of_line = lf/' .editorconfig
+        
       - name: Super linter
         uses: super-linter/super-linter@v7
         env:
