@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: main
+    branches: _main
 
 permissions: read-all
 
