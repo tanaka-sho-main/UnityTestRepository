@@ -18,4 +18,4 @@ jobs:
     - name: Spell Check Repo
       uses: crate-ci/typos@v1.29.5
       with:
-        files: /Assets/
+        files: "*/Assets/*"
