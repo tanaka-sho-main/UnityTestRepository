@@ -1,5 +1,3 @@
-[files]
-extend-exclude = ["*.jaaason", "*.ymaaaal"]
-
-[extend-glob]
-include = ["*/Assets/**"]
+[default]
+locale = "en-us"
+default.extend-ignore-re = "/Assets/Plugins/.*|/Assets/TextMesh Pro/.*"
