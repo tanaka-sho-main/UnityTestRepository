@@ -23,6 +23,6 @@ jobs:
           # 変更ファイル以外のすべてのファイルをチェック対象とするか
           VALIDATE_ALL_CODEBASE: true
           # JSCPD の設定ファイル
-          JSCPD_CONFIG_FILE: .github/.jscpd.json
+          JSCPD_CONFIG_FILE: /.github/.jscpd.json
           FILTER_REGEX_INCLUDE: '/Assets/.*\.cs'
           FILTER_REGEX_EXCLUDE: '/Assets/TextMesh Pro/.*'
