@@ -1,6 +1,7 @@
 [default]
 locale = "en-us"
 default.extend-ignore-re = "/ProjectSettings/.*|/Assets/Plugins/.*|/Assets/TextMesh Pro/.*"
-default.extend-words = [
-  Behaviour
-]
+
+[default.extend-words]
+behaviour = behaviour
+
