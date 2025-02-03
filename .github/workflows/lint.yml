@@ -5,7 +5,7 @@ on:
     branches: main
 #    branches: develop
 
-permissions: read-all
+permissions: write-all
 
 jobs:
   lint:
