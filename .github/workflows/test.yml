@@ -4,8 +4,8 @@ on:
   push:
     branches: main
 
-# checkov:skip:CKV2_GHA_1:required
-permissions: write-all
+permissions:
+  contents: write
 
 jobs:
   test:
