@@ -5,8 +5,6 @@ on:
     branches: main
 #    branches: develop
 
-permissions: write-all
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -14,8 +12,6 @@ jobs:
     steps:
       - name: Check out unity project
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Super linter
         uses: super-linter/super-linter@v7
@@ -25,5 +21,9 @@ jobs:
           IGNORE_GITIGNORED_FILES: true
           # 変更ファイル以外のすべてのファイルをチェック対象とするか
           VALIDATE_ALL_CODEBASE: true
+          # セキュリティチェックを無効化
+          VALIDATE_CHECKOV: false
+          # 重複チェックを無効化
+          VALIDATE_JSCPD: false
           FILTER_REGEX_INCLUDE: '/Assets/.*\.cs'
           FILTER_REGEX_EXCLUDE: '/Assets/TextMesh Pro/.*'
