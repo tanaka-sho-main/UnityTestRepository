@@ -1,0 +1,10 @@
+{
+	"threshold": 0,
+	"reporters": ["consoleFull"],
+	"ignore": [
+		"**/__snapshots__/**",
+		"**/node_modules/**",
+		"**/Assets/TextMesh Pro/**"
+	],
+	"absolute": true
+}
