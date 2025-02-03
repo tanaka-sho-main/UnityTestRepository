@@ -14,7 +14,9 @@ jobs:
     steps:
       - name: Check out unity project
         uses: actions/checkout@v4
-
+        with:
+          fetch-depth: 0  # 全ての履歴を取得
+          
       - name: Super linter
         uses: super-linter/super-linter@v7
         env:
