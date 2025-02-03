@@ -1,0 +1,5 @@
+[files]
+extend-exclude = ["*.jaaason", "*.ymaaaal"]
+
+[extend-glob]
+include = ["*/Assets/**"]
