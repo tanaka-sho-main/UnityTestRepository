@@ -1,6 +1,12 @@
 [default]
 locale = "en-us"
-default.extend-ignore-re = "/ProjectSettings/.*|/Assets/Plugins/.*|/Assets/TextMesh Pro/.*"
+
+[files]
+extend-exclude = [
+  "/ProjectSettings/",
+  "/Assets/Plugins/",
+  "/Assets/TextMesh Pro/"
+]
 
 [default.extend-words]
 behaviour = "behaviour"
