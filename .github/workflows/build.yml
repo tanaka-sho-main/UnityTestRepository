@@ -21,7 +21,7 @@ jobs:
         target-platform:
           - StandaloneWindows64
           - Android
-          - iOS
+          #- iOS
           - WebGL
         unity-version:
           - 2023.2.5f1
