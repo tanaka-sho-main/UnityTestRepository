@@ -9,6 +9,10 @@ on:
 
 permissions: read-all
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,7 +26,7 @@ jobs:
           - 2023.2.5f1
 
     steps:
-      - name: Check out unity project
+      - name: Check out unity project ${{ github.workflow }}-${{ github.ref }}
         uses: actions/checkout@v4
 
       - name: Build
