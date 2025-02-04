@@ -1,4 +1,6 @@
-name: Spelling
+name: Spell Check
+
+permissions: read-all
 
 on:
   push:
@@ -7,20 +9,16 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-env:
-  CLICOLOR: 1
 
 jobs:
   spelling:
     name: Spell Check with Typos
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
     - name: Checkout Actions Repository
       uses: actions/checkout@v4
