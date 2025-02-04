@@ -1,0 +1,13 @@
+[default]
+locale = "en-us"
+
+[files]
+extend-exclude = [
+  "/ProjectSettings/",
+  "/Assets/Plugins/",
+  "/Assets/TextMesh Pro/"
+]
+
+[default.extend-words]
+behaviour = "behaviour"
+mis = "mis"              # シーンオブジェクトで使用される m_PVREnvironmentMIS
