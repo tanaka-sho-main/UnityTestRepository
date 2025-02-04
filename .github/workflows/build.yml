@@ -15,15 +15,25 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         target-platform:
           - StandaloneWindows64
           - Android
+          - iOS
           - WebGL
         unity-version:
           - 2023.2.5f1
+        include:
+          - target-platform: iOS
+            os: macos-latest  # iOS は macOS でしかビルドできない
+          - target-platform: StandaloneWindows64
+            os: ubuntu-latest
+          - target-platform: Android
+            os: ubuntu-latest
+          - target-platform: WebGL
+            os: ubuntu-latest
 
     steps:
       - name: Check out unity project
